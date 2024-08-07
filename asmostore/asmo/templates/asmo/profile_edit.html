@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+ASMO | {{ title }}
+{% endblock title %}
+
+
+{% block slidebar %}
+
+{% endblock slidebar %}
+
+
+
+{% block main %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ user.first_name }} {{ user.last_name }} ({{user.username}})- Profilni
+        Tahrirlash</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.photo }}
+        {{ form.first_name }}
+        {{ form.last_name }}
+        {{ form.phone }}
+        {{ form.telegram }}
+        <button type="submit" class="btn btn-primary">Saqlash</button>
+        <a href="{% url 'user_profile' user.username %}" class="btn btn-secondary mt-2">Bekor qilish</a>
+    </form>
+</div>
+{% endblock main %}

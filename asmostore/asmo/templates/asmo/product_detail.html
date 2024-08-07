@@ -1,0 +1,537 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+ASMO | {{ product.name }}
+{% endblock title %}
+
+
+{% block slidebar %}
+
+{% endblock slidebar %}
+
+{% block main %}
+<!-- breadcrumb -->
+<div class="container mt-3">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="{% url 'index' %}" class="stext-109 cl8 hov-cl1 trans-04">
+            Asosiy sahifa
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+
+        <a href="{% url 'shop' %}" class="stext-109 cl8 hov-cl1 trans-04">
+            Mahsulotlar
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+
+        <span class="stext-109 cl4">
+				{{ product.name }}
+			</span>
+    </div>
+</div>
+
+<!-- Product Detail -->
+<section class="sec-product-detail bg0 p-t-65 p-b-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-7 p-b-30">
+                <div class="p-l-25 p-r-30 p-lr-0-lg">
+                    <div class="wrap-slick3 flex-sb flex-w">
+                        <div class="wrap-slick3-dots"></div>
+                        <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+                        <div class="slick3 gallery-lb">
+                            <div class="item-slick3" data-thumb="{{ product.image.url }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="{{ product.image.url }}" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                       href="{{ product.image.url }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="item-slick3" data-thumb="{{ product.image1.url }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="{{ product.image1.url }}" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                       href="{{ product.image1.url }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="item-slick3" data-thumb="{{ product.image2.url }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="{{ product.image2.url }}" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                       href="{{ product.image2.url }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-5 p-b-30">
+                <div class="p-r-50 p-t-5 p-lr-0-lg">
+                    <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                        {{ product.name }}
+                    </h4>
+
+                    <span class="mtext-106 cl2">
+							${{ product.price }}
+						</span>
+
+                    <p class="stext-102 cl3 p-t-23">
+                        {{ product.description }}
+                    </p>
+
+                    <!--  -->
+                    <div class="p-t-33">
+                        <div class="flex-w flex-r-m p-b-10">
+                            <div class="size-203 flex-c-m respon6">
+                                O'lchami
+                            </div>
+
+                            <div class="size-204 respon6-next">
+                                <div class="rs1-select2 bor8 bg0">
+                                    <select class="js-select2" name="time">
+                                        {% if product.size.all %}
+                                        <option>O'lchamni tanlang</option>
+                                        {% for size in product.size.all %}
+                                        <option>{{ size.name }}</option>
+                                        {% endfor %}
+                                        {% else %}
+                                        <option>O'lchami tugagan</option>
+                                        {% endif %}
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-w flex-r-m p-b-10">
+                            <div class="size-203 flex-c-m respon6">
+                                Rangi
+                            </div>
+
+                            <div class="size-204 respon6-next">
+                                <div class="rs1-select2 bor8 bg0">
+                                    <select class="js-select2" name="time">
+                                        <option>Rangni tanlang</option>
+                                        {% for color in product.color.all %}
+                                        <option>{{ color.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-w flex-r-m p-b-10">
+                            <div class="size-204 flex-w flex-m respon6-next">
+                                <form method="post" action="{% url 'to_cart' product.slug 'add' %}">
+                                    {% csrf_token %}
+                                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                        </div>
+
+                                        <input class="mtext-104 cl3 txt-center num-product" type="number"
+                                               name="quantity" min="1"
+                                               value="1" max="{{ product.quantity }}">
+
+                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            {% if not product.size.all or not product.color.all or not product.quantity %}
+                            <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                Maxsulot tugagan
+                            </button>
+
+                            {% else %}
+                            <a href="{% url 'to_cart' product.slug 'add' %}"
+                               class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 mr-5 js-addcart-detail">
+                                Add to cart
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!--  -->
+                <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                    <div class="flex-m bor9 p-r-10 m-r-11">
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'add_to_wishlist' product.slug %}"
+                           class="btn-addwish-b2 dis-block pos-relative">
+                            <img class="icon-heart1 dis-block trans-04"
+                                 src="{% static 'images/icons/icon-heart-01.png' %}" alt="ICON">
+                            {% else %}
+                            <a href="javascript:void(0);"
+                               onclick="alert('Siz ro\'yxatdan o\'tmagansiz!');"
+                               class="btn-addwish-b2 dis-block pos-relative">
+                                <img class="icon-heart1 dis-block trans-04"
+                                     src="{% static 'images/icons/icon-heart-01.png' %}" alt="ICON">
+                                {% endif %}
+                    </div>
+                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+                       data-tooltip="Facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+
+                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+                       data-tooltip="Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+
+                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+                       data-tooltip="Google Plus">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bor10 m-t-50 p-t-43 p-b-40">
+        <!-- Tab01 -->
+        <div class="tab01">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item p-b-10">
+                    <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Tavsif</a>
+                </li>
+
+                <li class="nav-item p-b-10">
+                    <a class="nav-link" data-toggle="tab" href="#information" role="tab">Qo'shimcha ma'lumot</a>
+                </li>
+
+                <li class="nav-item p-b-10">
+                    <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Sharhlar ({{ reviews.count }})</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content p-t-43">
+                <!-- - -->
+                <div class="tab-pane fade show active" id="description" role="tabpanel">
+                    <div class="how-pos2 p-lr-15-md">
+                        <p class="stext-102 cl6">
+                            {{ product.description }}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- - -->
+                <div class="tab-pane fade" id="information" role="tabpanel">
+                    <div class="row">
+                        <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                            <ul class="p-lr-28 p-lr-15-sm">
+                                <li class="flex-w flex-t p-b-7">
+											<span class="stext-102 cl3 size-205">
+												Og'irligi
+											</span>
+
+                                    <span class="stext-102 cl6 size-206">
+												{{ product.weight }} kg
+											</span>
+                                </li>
+
+                                <li class="flex-w flex-t p-b-7">
+											<span class="stext-102 cl3 size-205">
+												O'lchamlari
+											</span>
+
+                                    <span class="stext-102 cl6 size-206">
+                                            {% for size in product.size.all %}
+                                             {{ size.name }}{% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+											</span>
+                                </li>
+
+                                <li class="flex-w flex-t p-b-7">
+											<span class="stext-102 cl3 size-205">
+												Materiali
+											</span>
+
+                                    <span class="stext-102 cl6 size-206">
+												{{ product.materials }}
+											</span>
+                                </li>
+
+                                <li class="flex-w flex-t p-b-7">
+											<span class="stext-102 cl3 size-205">
+												Ranglari
+											</span>
+
+                                    <span class="stext-102 cl6 size-206">
+                                            {% for color in product.color.all %}
+                                             {{ color.name }}{% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+											</span>
+                                </li>
+
+                                <li class="flex-w flex-t p-b-7">
+											<span class="stext-102 cl3 size-205">
+												Sort
+											</span>
+
+                                    <span class="stext-102 cl6 size-206">
+												{{ product.sort}}
+											</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- - -->
+                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                    <div class="row">
+                        <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                            <div class="p-b-30 m-lr-15-sm">
+                                <!-- Review -->
+                                {% for review in reviews %}
+                                <div class="flex-w flex-t p-b-68">
+                                    <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+                                        {% if review.user.profile.photo %}
+                                        <img src="{{ review.user.profile.photo.url }}" alt="AVATAR">
+                                        {% else %}
+                                        <img src="{% static 'images/default-avatar.png' %}" alt="Default AVATAR">
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="size-207">
+                                        <div class="flex-w flex-sb-m p-b-17">
+													<span class="mtext-107 cl2 p-r-20">
+														{{ review.user }}
+													</span>
+
+                                            <span class="fs-18 cl11">
+                                                    {% if review.rating == 5 %}
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                    {% elif review.rating == 4 %}
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                    {% elif review.rating == 3 %}
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                    {% elif review.rating == 2 %}
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                    {% elif review.rating == 1 %}
+                                                        <i class="zmdi zmdi-star"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                    {% elif review.rating == 0 %}
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                        <i class="zmdi zmdi-star-outline"></i>
+                                                    {% endif %}
+                                                </span>
+                                        </div>
+
+                                        <p class="stext-102 cl6">
+                                            {{ review.comment }}
+                                        </p>
+                                        <div class="flex-w flex-sb-m">
+                                            <span class="stext-102 cl6">
+                                                {{ review.date|date:"F j, Y, g:i a" }}
+                                            </span>
+
+                                            {% if review.user == request.user %}
+                                            <a href="{% url 'delete_review' review.id %}" class="stext-102 cl6">
+                                                <i class="zmdi zmdi-delete"></i> O'chirish
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <!-- Add review -->
+                                <form class="w-full" method="post"
+                                      action="{% url 'product_detail' product.slug %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="prod_slug" id="prod_slug" value="{{ product.slug }}">
+                                    <h5 class="mtext-108 cl2 p-b-7">
+                                        Izoh yozish
+                                    </h5>
+                                    <div class="flex-w flex-m p-t-50 p-b-23">
+                                            <span class="stext-102 cl3 m-r-16">
+                                                Sizning reytingingiz
+                                            </span>
+                                        <div class="wrap-rating fs-18 cl11 pointer">
+                                            <i class="item-rating pointer zmdi zmdi-star-outline"
+                                               data-rating="1"></i>
+                                            <i class="item-rating pointer zmdi zmdi-star-outline"
+                                               data-rating="2"></i>
+                                            <i class="item-rating pointer zmdi zmdi-star-outline"
+                                               data-rating="3"></i>
+                                            <i class="item-rating pointer zmdi zmdi-star-outline"
+                                               data-rating="4"></i>
+                                            <i class="item-rating pointer zmdi zmdi-star-outline"
+                                               data-rating="5"></i>
+                                            <input class="dis-none" type="number" name="rating" id="rating-input">
+                                        </div>
+                                    </div>
+                                    <div class="row p-b-25">
+                                        <div class="col-12 p-b-5">
+                                            <label class="stext-102 cl3" for="review">Sizning izohingiz</label>
+                                            <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10 input"
+                                                      type="text"
+                                                      id="review" name="comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
+                                        Yuborish
+                                    </button>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+			<span class="stext-107 cl6 p-lr-25">
+				<b>Brend:</b> {{ product.brand }}
+			</span>
+
+        <span class="stext-107 cl6 p-lr-25">
+				<b>Kategoriya:</b> {{product.category}}
+			</span>
+    </div>
+</section>
+
+
+<!-- Related Products -->
+<section class="sec-relate-product bg0 p-t-45 p-b-105">
+    <div class="container">
+        <div class="p-b-45">
+            <h3 class="ltext-106 cl5 txt-center">
+                Tegishli mahsulotlar
+            </h3>
+        </div>
+
+        <!-- Slide2 -->
+        <div class="wrap-slick2">
+            <div class="slick2">
+                {% if related_products %}
+                {% for p in related_products %}
+                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                    <!-- Block2 -->
+                    <div class="block2">
+                        <div class="block2-pic hov-img0">
+                            <img src="{{ p.image.url }}" alt="IMG-PRODUCT">
+
+                            <a href="#"
+                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                Ko'rish
+                            </a>
+                        </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="{% url 'product_detail' p.slug %}"
+                                   class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    {{ p.name }}
+                                </a>
+
+                                <span class="stext-105 cl3">
+										${{ p.price }}
+									</span>
+                            </div>
+
+                            <div class="block2-txt-child2 flex-r p-t-3">
+                                {% if request.user.is_authenticated %}
+                                        <a href="{% url 'add_to_wishlist' p.slug %}"
+                                           class="btn-addwish-b2 dis-block pos-relative">
+                                            <img class="icon-heart1 dis-block trans-04"
+                                                 src="{% static 'images/icons/icon-heart-01.png' %}" alt="ICON">
+                                            {% else %}
+                                            <a href="javascript:void(0);"
+                                               onclick="alert('Siz ro\'yxatdan o\'tmagansiz!');"
+                                               class="btn-addwish-b2 dis-block pos-relative">
+                                                <img class="icon-heart1 dis-block trans-04"
+                                                     src="{% static 'images/icons/icon-heart-01.png' %}" alt="ICON">
+                                                {% endif %}
+                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                         src="{% static 'images/icons/icon-heart-02.png' %}" alt="ICON">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="centered">
+                    Ushbu kategoriyaga tegishli maxsulot yo'q!
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var stars = document.querySelectorAll('.item-rating');
+        stars.forEach(function (star) {
+            star.addEventListener('click', setRating);
+        });
+
+        function setRating(e) {
+            var rating = e.currentTarget.getAttribute('data-rating');
+            document.getElementById('rating-input').value = rating;
+            updateStars(rating);
+        }
+
+        function updateStars(rating) {
+            stars.forEach(function (star, index) {
+                if (index < rating) {
+                    star.classList.remove('zmdi-star-outline');
+                    star.classList.add('zmdi-star');
+                } else {
+                    star.classList.remove('zmdi-star');
+                    star.classList.add('zmdi-star-outline');
+                }
+            });
+        }
+    });
+
+</script>
+{% endblock main %}

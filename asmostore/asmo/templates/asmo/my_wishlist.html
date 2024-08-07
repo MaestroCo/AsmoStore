@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+ASMO | {{ product.name }}
+{% endblock title %}
+
+
+{% block slidebar %}
+
+{% endblock slidebar %}
+
+{% block main %}
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{% static 'images/bg-02.jpg' %}');">
+    <h2 class="ltext-105 cl0 txt-center">
+        {{ title }}
+    </h2>
+</section>
+<div class="bg0 m-t-23 p-b-140 mt-5">
+    <div class="container">
+        <div class="row isotope-grid">
+            {% if products_in_wishlist %}
+            {% for w in products_in_wishlist %}
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ product.category.slug }}">
+                <!-- Block2 -->
+                <div class="block2">
+                    <div class="block2-pic hov-img0">
+                        <img src="{{ w.image.url }}" alt="IMG-PRODUCT">
+
+                        <a href="{% url 'product_detail' w.slug %}"
+                           class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                            Ko'rish
+                        </a>
+                    </div>
+
+                    <div class="block2-txt flex-w flex-t p-t-14">
+                        <div class="block2-txt-child1 flex-col-l ">
+                            <a href="{% url 'product_detail' w.slug %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                {{ w.name }}
+                            </a>
+
+                            <span class="stext-105 cl3">
+									${{ w.price }}
+								</span>
+                        </div>
+
+                        <div class="block2-txt-child2 flex-r p-t-3">
+                            <a href="{% url 'remove_from_wishlist' w.slug %}"
+                               class="btn-addwish-b2 dis-block pos-relative">
+                                <img class="icon-heart1 dis-block trans-04"
+                                     src="{% static 'images/icons/icon-heart-01.png' %}"
+                                     alt="ICON">
+                                <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                     src="{% static 'images/icons/icon-heart-02.png' %}"
+                                     alt="ICON">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div>
+                Sizda tanlangan maxsulotlar mavjud emas!
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock main %}

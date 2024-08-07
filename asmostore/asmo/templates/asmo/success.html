@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+To'lov Tasdiqlandi
+{% endblock title %}
+
+{% block slidebar %}
+
+{% endblock slidebar %}
+
+
+{% block main %}
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{% static 'images/bg-02.jpg' %}');">
+    <h2 class="ltext-105 cl0 txt-center">
+        To'lov Tasdiqlandi
+    </h2>
+</section>
+
+
+<div id="main-content" style="text-align: center; padding: 20px;">
+    <h1 style="color: #2b0080;">To'lov Muvafaqiyatli Amalga Oshirildi</h1>
+    <p>To'lovingiz uchun rahmat! Xizmatlarimizdan foydalanganingizdan mamnunmiz.</p>
+    <a href="{% url 'index' %}"
+       style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #7b00ff; color: white; text-decoration: none; border-radius: 5px;">Bosh
+        Sahifa</a>
+</div>
+
+{% endblock main %}

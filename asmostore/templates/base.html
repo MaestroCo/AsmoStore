@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--	style-->
+    {% include 'components/_style.html' %}
+    <!--	end style-->
+</head>
+
+<body class="animsition">
+
+<!-- Header -->
+{% include 'components/_header.html' %}
+
+
+<!-- Sidebar -->
+{% include 'components/_sidebar.html' %}
+
+
+<!-- Cart -->
+{% include 'components/_cart.html' %}
+
+{% block slidebar %}
+<!-- Slider -->
+{% include 'components/_slider.html' %}
+{% endblock slidebar %}
+
+{% block main %}
+
+
+{% endblock main %}
+<!-- Footer -->
+{% include 'components/_footer.html' %}
+
+
+{% block model %}
+<!-- Modal1 -->
+{% include 'components/_model.html' %}
+{% endblock model %}
+
+<!--	script-->
+{% include 'components/_scripts.html' %}
+<!--	end script-->
+</body>
+</html>

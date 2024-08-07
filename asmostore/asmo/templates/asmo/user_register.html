@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+ASMO | {{ title }}
+{% endblock title %}
+
+
+{% block slidebar %}
+
+{% endblock slidebar %}
+
+
+{% block main %}
+<div class="container mt-5">
+  <h2>Ro'yxatdan o'tish</h2>
+  <form method="post" action="{% url 'user_register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mt-2" style="color: white;">Ro'yxatdan o'tish</button>
+  </form>
+</div>
+{% endblock main %}

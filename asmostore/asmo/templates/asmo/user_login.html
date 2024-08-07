@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+ASMO | {{ title }}
+{% endblock title %}
+
+
+{% block slidebar %}
+
+{% endblock slidebar %}
+{% block main %}
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{% static 'images/bg-02.jpg' %}');">
+    <h2 class="ltext-105 cl0 txt-center">
+        {{ title }}
+    </h2>
+</section>
+
+<div style="max-width: 400px" class="container mt-5">
+    <form method="post">
+        {% csrf_token %}
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input name="username" type="text" id="form2Example1" class="form-control"/>
+            <label class="form-label" for="form2Example1">Username</label>
+        </div>
+
+        <!-- Password input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input name="password" type="password" id="form2Example2" class="form-control"/>
+            <label class="form-label" for="form2Example2">Password</label>
+        </div>
+        <!-- Submit button -->
+        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4" style="color: white">Kirish
+        </button>
+    </form>
+         <div class="text-center mb-4">
+        <span>Agar hisobingiz bo'lmasa </span>
+        <a href="{% url 'user_register' %}" class="btn btn-secondary btn-block">Ro'yxatdan o'tish</a>
+    </div>
+</div>
+{% endblock main %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block slidebar %}
+
+{% endblock slidebar %}
+
+{% block main %}
+<!-- Title page -->
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{% static 'images/bg-01.jpg' %}');">
+    <h2 class="ltext-105 cl0 txt-center">
+        {{ title }}
+    </h2>
+</section>
+
+
+<!-- Content page -->
+<section class="bg0 p-t-75 p-b-120">
+    <div class="container">
+        <div class="row p-b-148">
+            <div class="col-md-7 col-lg-8">
+                <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+                    <h3 class="mtext-111 cl2 p-b-16">
+                        Bizning hikoyamiz
+                    </h3>
+
+                    <p class="stext-113 cl6 p-b-26">
+                        Asmo – bu nafaqat kiyim do’koni, balki har bir libos orqali o’ziga xos hikoyani aytib beradigan
+                        madaniyat markazidir. Bizning sayohatimiz, sizning kiyinish tarzingiz bilan o’z-o’zini ifoda
+                        etish san’atini qadrlaydigan kichik bir jamoa sifatida boshlandi. Asmo, zamonaviy dizayn va
+                        an’anaviy hunarmandchilikni birlashtirgan holda, har bir mijozimizga o’ziga xoslik va chiroyli
+                        ko’rinishni taqdim etishga intiladi.
+                    </p>
+
+                    <p class="stext-113 cl6 p-b-26">
+                        Bizning maqsadimiz, sizning har kuniy hayotingizda hamroh bo’ladigan, shu bilan birga maxsus
+                        tadbirlar uchun ham sizni ajralib turishingizni ta’minlaydigan kiyimlarni yaratishdir. Har bir
+                        matoni tanlashdan tortib to tikishgacha bo’lgan jarayonimizda, biz sifat va uslubga katta
+                        e’tibor beramiz. Asmo, sizning shaxsiy hikoyangizni yanada rang-barang va ma’noli qilish uchun
+                        mo’ljallangan.
+                    </p>
+
+                    <p class="stext-113 cl6 p-b-26">
+                        Bizning har bir kiyimimiz, sizning hayotingizdagi noyob lahzalarni yanada yorqinroq qilish
+                        uchun, sevgi va ehtiyotkorlik bilan yaratilgan. Asmo bilan, siz nafaqat kiyim sotib olasiz,
+                        balki o’z tarixingizni yaratishda ishtirok etasiz.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+                <div class="how-bor1 ">
+                    <div class="hov-img0">
+                        <img src="{% static 'images/about-01.jpg' %}" alt="IMG">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="order-md-2 col-md-7 col-lg-8 p-b-30">
+                <div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
+                    <h3 class="mtext-111 cl2 p-b-16">
+                        Bizning vazifamiz
+                    </h3>
+
+                    <p class="stext-113 cl6 p-b-26">
+                        Asmo, har bir mijozimizning shaxsiy uslubini aks ettirish va ularning hayotiga go’zallik
+                        qo’shish uchun sadoqat bilan xizmat qilishga intiladi. Bizning asosiy vazifamiz, sizga nafaqat
+                        kiyim, balki o’z-o’zini ifoda etishning bir vositasini taqdim etishdir. Har bir libosimiz,
+                        sizning individualizmingizni namoyon etish va o’zingizni yanada ishonchli his qilishingiz uchun
+                        mo’ljallangan.
+                    </p>
+
+                    <div class="bor16 p-l-29 p-b-9 m-t-22">
+                        <p class="stext-114 cl6 p-r-40 p-b-11">
+                            Ijodiylik bu faqat narsalarni bog’lashdir. Ijodkor odamlardan ular biror narsani qanday
+                            qilganini so’rasangiz, ular o'zlarini biroz aybdor his qilishadi, chunki ular haqiqatan ham hech nima
+                            qilmagan, faqat biror narsani ko’rgan. Bir muddat o’tgach, bu ular uchun aniq g'oya bo’lib qoladi.
+                        </p>
+
+                        <span class="stext-111 cl8">
+								- Stiv Jobs
+							</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
+                <div class="how-bor2">
+                    <div class="hov-img0">
+                        <img src="{% static 'images/about-02.jpg' %}" alt="IMG">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}
